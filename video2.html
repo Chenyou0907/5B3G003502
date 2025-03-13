@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video2</title>
+    <style>
+        /* 页面整体居中设置 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .video-container {
+            position: relative;
+            margin-bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .controls {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 8px 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        
+        p {
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="video-container">
+        <video id="myVideo" width="800" controls>
+            <source src="3月12日.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+    </div>
+    
+    <div class="controls">
+        <button id="playPauseBtn">播放/暂停</button>
+        <button id="enlargeBtn">放大</button>
+        <button id="shrinkBtn">缩小</button>
+        <button id="resetBtn">重置</button>
+    </div>
+    
+    <p>
+        video courtesy of
+        <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>
+    </p>
+    <script>
+        // 获取元素
+        const video = document.getElementById('myVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const enlargeBtn = document.getElementById('enlargeBtn');
+        const shrinkBtn = document.getElementById('shrinkBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        // 原始视频尺寸
+        const originalWidth = 800;
+        
+        // 播放/暂停功能
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+        
+        // 放大视频
+        enlargeBtn.addEventListener('click', function() {
+            video.width = video.width * 1.2;
+        });
+        
+        // 缩小视频
+        shrinkBtn.addEventListener('click', function() {
+            video.width = video.width * 0.8;
+        });
+        
+        // 重置设置
+        resetBtn.addEventListener('click', function() {
+            video.width = originalWidth;
+            video.currentTime = 0;
+            video.pause();
+        });
+    </script>
+</body>
+</html>
